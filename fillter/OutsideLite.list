@@ -1,0 +1,130 @@
+# > UA
+USER-AGENT,Instagram*,Outside
+# > Microsoft Proxy
+USER-AGENT,OneDrive*,Outside
+HOST-KEYWORD,onedrive,Outside
+HOST-SUFFIX,onedrive.com,Outside
+HOST-SUFFIX,skype.com,Outside
+HOST-SUFFIX,storage.live.com,Outside
+# > PayPal
+USER-AGENT,PayPal*,Outside
+HOST-KEYWORD,paypal,Outside
+HOST-SUFFIX,paypal.com,Outside
+HOST-SUFFIX,paypalobjects.com,Outside
+# > Pornhub
+HOST-SUFFIX,phncdn.com,Outside
+HOST-SUFFIX,phprcdn.com,Outside
+HOST-SUFFIX,pornhub.com,Outside
+HOST-SUFFIX,pornhubpremium.com,Outside
+# > Steam
+HOST-SUFFIX,fanatical.com,Outside
+HOST-SUFFIX,humblebundle.com,Outside
+HOST-SUFFIX,steamcommunity.com,Outside
+HOST-SUFFIX,steampowered.com,Outside
+HOST-SUFFIX,steamstatic.com,Outside
+# > Telegram
+HOST-KEYWORD,telegram,Outside
+HOST-SUFFIX,t.me,Outside
+HOST-SUFFIX,tdesktop.com,Outside
+HOST-SUFFIX,telegra.ph,Outside
+HOST-SUFFIX,telegram.me,Outside
+HOST-SUFFIX,telegram.org,Outside
+IP-CIDR,91.108.0.0/16,Outside
+IP-CIDR,109.239.140.0/24,Outside
+IP-CIDR,149.154.160.0/20,Outside
+IP6-CIDR,2001:67c:4e8::/48,Outside
+IP6-CIDR,2001:b28:f23d::/48,Outside
+IP6-CIDR,2001:b28:f23f::/48,Outside
+# > Top blocked sites
+HOST-SUFFIX,91porn.com,Outside
+HOST-SUFFIX,adblockplus.org,Outside
+HOST-SUFFIX,amazon.co,Outside
+HOST-SUFFIX,amazon.com,Outside
+HOST-SUFFIX,amazonaws.com,Outside
+HOST-SUFFIX,android.com,Outside
+HOST-SUFFIX,androidify.com,Outside
+HOST-SUFFIX,android-x86.org,Outside
+HOST-SUFFIX,angularjs.org,Outside
+HOST-SUFFIX,api.tiktokv.com,Outside
+HOST-SUFFIX,apkpure.com,Outside
+HOST-SUFFIX,apple-dns.net,Outside
+HOST-SUFFIX,blog.com,Outside
+HOST-SUFFIX,blogcdn.com,Outside
+HOST-SUFFIX,books.com.tw,Outside
+HOST-SUFFIX,cdn.segment.com,Outside
+HOST-SUFFIX,cdnst.net,Outside
+HOST-SUFFIX,chrome.com,Outside
+HOST-SUFFIX,chromecast.com,Outside
+HOST-SUFFIX,chromercise.com,Outside
+HOST-SUFFIX,chromestatus.com,Outside
+HOST-SUFFIX,chromium.org,Outside
+HOST-SUFFIX,v2ex.co,Outside
+HOST-SUFFIX,v2ex.com,Outside
+HOST-SUFFIX,v2ray.com,Outside
+HOST-SUFFIX,xvideos.com,Outside
+HOST-SUFFIX,yahoo.com,Outside
+HOST-SUFFIX,yahooapis.com,Outside
+# > Force some domains which are fucked by GFW while resolving DNS,or do not respect the system Proxy
+HOST-KEYWORD,dropbox,Outside
+HOST-KEYWORD,facebook,Outside
+HOST-KEYWORD,github,Outside
+HOST-KEYWORD,instagram,Outside
+HOST-KEYWORD,whatsapp,Outside
+HOST-KEYWORD,google,Outside
+HOST-SUFFIX,blogblog.com,Outside
+HOST-SUFFIX,chromeexperiments.com,Outside
+HOST-SUFFIX,fb.com,Outside
+HOST-SUFFIX,fb.me,Outside
+HOST-SUFFIX,fbcdn.net,Outside
+HOST-SUFFIX,pubnub.com,Outside
+# > Facebook
+IP-CIDR,103.4.96.0/22,Outside
+IP-CIDR,129.134.0.0/17,Outside
+IP-CIDR,157.240.0.0/17,Outside
+IP-CIDR,173.252.64.0/19,Outside
+IP-CIDR,173.252.96.0/19,Outside
+IP-CIDR,179.60.192.0/22,Outside
+IP-CIDR,185.60.216.0/22,Outside
+IP-CIDR,204.15.20.0/22,Outside
+IP-CIDR,31.13.24.0/21,Outside
+IP-CIDR,31.13.64.0/18,Outside
+IP-CIDR,45.64.40.0/22,Outside
+IP-CIDR,66.220.144.0/20,Outside
+IP-CIDR,69.171.224.0/19,Outside
+IP-CIDR,69.63.176.0/20,Outside
+IP-CIDR,74.119.76.0/22,Outside
+# > Google
+IP-CIDR,173.194.0.0/16,Outside
+IP-CIDR,74.125.0.0/16,Outside
+# > Youtube
+USER-AGENT,*youtube*,Outside
+USER-AGENT,YouTube*,Outside
+HOST-KEYWORD,youtube,Outside
+HOST,yt3.ggpht.com,Outside
+HOST-SUFFIX,googlevideo.com,Outside
+HOST-SUFFIX,gvt2.com,Outside
+HOST-SUFFIX,youtu.be,Outside
+HOST,youtubei.googleapis.com,Outside
+HOST-SUFFIX,ytimg.com,Outside
+# > Twitter
+HOST-KEYWORD,twitter,Outside
+HOST-SUFFIX,periscope.tv,Outside
+HOST-SUFFIX,pscp.tv,Outside
+HOST-SUFFIX,t.co,Outside
+HOST-SUFFIX,tellapart.com,Outside
+HOST-SUFFIX,tweetdeck.com,Outside
+HOST-SUFFIX,twimg.co,Outside
+HOST-SUFFIX,twimg.com,Outside
+HOST-SUFFIX,twimg.org,Outside
+HOST-SUFFIX,twitpic.com,Outside
+HOST-SUFFIX,twtrdns.net,Outside
+HOST-SUFFIX,twttr.com,Outside
+HOST-SUFFIX,vine.co,Outside
+IP-CIDR,104.244.42.0/21,Outside
+IP-CIDR,192.133.76.0/22,Outside
+IP-CIDR,199.16.156.0/22,Outside
+IP-CIDR,199.59.148.0/22,Outside
+IP-CIDR,199.96.56.0/21,Outside
+IP-CIDR,202.160.128.0/22,Outside
+IP-CIDR,209.237.192.0/19,Outside
+IP-CIDR,69.195.160.0/19,Outside

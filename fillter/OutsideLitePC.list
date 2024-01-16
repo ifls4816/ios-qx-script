@@ -1,0 +1,130 @@
+# > UA
+USER-AGENT,Instagram*,OutsidePC
+# > Microsoft Proxy
+USER-AGENT,OneDrive*,OutsidePC
+HOST-KEYWORD,onedrive,OutsidePC
+HOST-SUFFIX,onedrive.com,OutsidePC
+HOST-SUFFIX,skype.com,OutsidePC
+HOST-SUFFIX,storage.live.com,OutsidePC
+# > PayPal
+USER-AGENT,PayPal*,OutsidePC
+HOST-KEYWORD,paypal,OutsidePC
+HOST-SUFFIX,paypal.com,OutsidePC
+HOST-SUFFIX,paypalobjects.com,OutsidePC
+# > Pornhub
+HOST-SUFFIX,phncdn.com,OutsidePC
+HOST-SUFFIX,phprcdn.com,OutsidePC
+HOST-SUFFIX,pornhub.com,OutsidePC
+HOST-SUFFIX,pornhubpremium.com,OutsidePC
+# > Steam
+HOST-SUFFIX,fanatical.com,OutsidePC
+HOST-SUFFIX,humblebundle.com,OutsidePC
+HOST-SUFFIX,steamcommunity.com,OutsidePC
+HOST-SUFFIX,steampowered.com,OutsidePC
+HOST-SUFFIX,steamstatic.com,OutsidePC
+# > Telegram
+HOST-KEYWORD,telegram,OutsidePC
+HOST-SUFFIX,t.me,OutsidePC
+HOST-SUFFIX,tdesktop.com,OutsidePC
+HOST-SUFFIX,telegra.ph,OutsidePC
+HOST-SUFFIX,telegram.me,OutsidePC
+HOST-SUFFIX,telegram.org,OutsidePC
+IP-CIDR,91.108.0.0/16,OutsidePC
+IP-CIDR,109.239.140.0/24,OutsidePC
+IP-CIDR,149.154.160.0/20,OutsidePC
+IP6-CIDR,2001:67c:4e8::/48,OutsidePC
+IP6-CIDR,2001:b28:f23d::/48,OutsidePC
+IP6-CIDR,2001:b28:f23f::/48,OutsidePC
+# > Top blocked sites
+HOST-SUFFIX,91porn.com,OutsidePC
+HOST-SUFFIX,adblockplus.org,OutsidePC
+HOST-SUFFIX,amazon.co,OutsidePC
+HOST-SUFFIX,amazon.com,OutsidePC
+HOST-SUFFIX,amazonaws.com,OutsidePC
+HOST-SUFFIX,android.com,OutsidePC
+HOST-SUFFIX,androidify.com,OutsidePC
+HOST-SUFFIX,android-x86.org,OutsidePC
+HOST-SUFFIX,angularjs.org,OutsidePC
+HOST-SUFFIX,api.tiktokv.com,OutsidePC
+HOST-SUFFIX,apkpure.com,OutsidePC
+HOST-SUFFIX,apple-dns.net,OutsidePC
+HOST-SUFFIX,blog.com,OutsidePC
+HOST-SUFFIX,blogcdn.com,OutsidePC
+HOST-SUFFIX,books.com.tw,OutsidePC
+HOST-SUFFIX,cdn.segment.com,OutsidePC
+HOST-SUFFIX,cdnst.net,OutsidePC
+HOST-SUFFIX,chrome.com,OutsidePC
+HOST-SUFFIX,chromecast.com,OutsidePC
+HOST-SUFFIX,chromercise.com,OutsidePC
+HOST-SUFFIX,chromestatus.com,OutsidePC
+HOST-SUFFIX,chromium.org,OutsidePC
+HOST-SUFFIX,v2ex.co,OutsidePC
+HOST-SUFFIX,v2ex.com,OutsidePC
+HOST-SUFFIX,v2ray.com,OutsidePC
+HOST-SUFFIX,xvideos.com,OutsidePC
+HOST-SUFFIX,yahoo.com,OutsidePC
+HOST-SUFFIX,yahooapis.com,OutsidePC
+# > Force some domains which are fucked by GFW while resolving DNS,or do not respect the system Proxy
+HOST-KEYWORD,dropbox,OutsidePC
+HOST-KEYWORD,facebook,OutsidePC
+HOST-KEYWORD,github,OutsidePC
+HOST-KEYWORD,instagram,OutsidePC
+HOST-KEYWORD,whatsapp,OutsidePC
+HOST-KEYWORD,google,OutsidePC
+HOST-SUFFIX,blogblog.com,OutsidePC
+HOST-SUFFIX,chromeexperiments.com,OutsidePC
+HOST-SUFFIX,fb.com,OutsidePC
+HOST-SUFFIX,fb.me,OutsidePC
+HOST-SUFFIX,fbcdn.net,OutsidePC
+HOST-SUFFIX,pubnub.com,OutsidePC
+# > Facebook
+IP-CIDR,103.4.96.0/22,OutsidePC
+IP-CIDR,129.134.0.0/17,OutsidePC
+IP-CIDR,157.240.0.0/17,OutsidePC
+IP-CIDR,173.252.64.0/19,OutsidePC
+IP-CIDR,173.252.96.0/19,OutsidePC
+IP-CIDR,179.60.192.0/22,OutsidePC
+IP-CIDR,185.60.216.0/22,OutsidePC
+IP-CIDR,204.15.20.0/22,OutsidePC
+IP-CIDR,31.13.24.0/21,OutsidePC
+IP-CIDR,31.13.64.0/18,OutsidePC
+IP-CIDR,45.64.40.0/22,OutsidePC
+IP-CIDR,66.220.144.0/20,OutsidePC
+IP-CIDR,69.171.224.0/19,OutsidePC
+IP-CIDR,69.63.176.0/20,OutsidePC
+IP-CIDR,74.119.76.0/22,OutsidePC
+# > Google
+IP-CIDR,173.194.0.0/16,OutsidePC
+IP-CIDR,74.125.0.0/16,OutsidePC
+# > Youtube
+USER-AGENT,*youtube*,OutsidePC
+USER-AGENT,YouTube*,OutsidePC
+HOST-KEYWORD,youtube,OutsidePC
+HOST,yt3.ggpht.com,OutsidePC
+HOST-SUFFIX,googlevideo.com,OutsidePC
+HOST-SUFFIX,gvt2.com,OutsidePC
+HOST-SUFFIX,youtu.be,OutsidePC
+HOST,youtubei.googleapis.com,OutsidePC
+HOST-SUFFIX,ytimg.com,OutsidePC
+# > Twitter
+HOST-KEYWORD,twitter,OutsidePC
+HOST-SUFFIX,periscope.tv,OutsidePC
+HOST-SUFFIX,pscp.tv,OutsidePC
+HOST-SUFFIX,t.co,OutsidePC
+HOST-SUFFIX,tellapart.com,OutsidePC
+HOST-SUFFIX,tweetdeck.com,OutsidePC
+HOST-SUFFIX,twimg.co,OutsidePC
+HOST-SUFFIX,twimg.com,OutsidePC
+HOST-SUFFIX,twimg.org,OutsidePC
+HOST-SUFFIX,twitpic.com,OutsidePC
+HOST-SUFFIX,twtrdns.net,OutsidePC
+HOST-SUFFIX,twttr.com,OutsidePC
+HOST-SUFFIX,vine.co,OutsidePC
+IP-CIDR,104.244.42.0/21,OutsidePC
+IP-CIDR,192.133.76.0/22,OutsidePC
+IP-CIDR,199.16.156.0/22,OutsidePC
+IP-CIDR,199.59.148.0/22,OutsidePC
+IP-CIDR,199.96.56.0/21,OutsidePC
+IP-CIDR,202.160.128.0/22,OutsidePC
+IP-CIDR,209.237.192.0/19,OutsidePC
+IP-CIDR,69.195.160.0/19,OutsidePC
