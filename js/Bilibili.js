@@ -8,10 +8,6 @@
 ^https?:\/\/api\.bilibili\.com\/x\/vip\/ads\/material\/report url reject-dict
 # ～ BiliBili_哔哩哔哩_小卡片广告@ddgksf2013
 ^https://api.bilibili.com/pgc/season/player/cards url reject-dict
-# ～ BiliBili_哔哩哔哩_视频播放下方商品推广@ddgksf2013
-#^https?:\/\/api\.bili(api|bili)\.(net|com)\/pgc\/season\/app\/related\/recommend\? url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
-# ～ BiliBili_哔哩哔哩_点击追番Card@ddgksf2013
-#^https?:\/\/api\.bilibili\.com\/pgc\/season\/player\/ogv\/cards url reject-dict
 
 # ======= BiliJson 开屏及隐私 ======= #
 # ～ BiliBili_哔哩哔哩_屏蔽IP请求@ddgksf2013
@@ -21,16 +17,6 @@
 # ～ BiliBili_哔哩哔哩_应用开屏广告预加载@yjqiang
 ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 
-
-# ======= BiliJson 高码率仅粉色旧版[V7.65] ======= #
-# ～ BiliBili_哔哩哔哩_1080P高码率+4K画质[番剧和影视除外]@ddgksf2013
-# ^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\? url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
-
-# ======= BiliJson 外观处理 ======= #
-# ～ BiliBili_哔哩哔哩_标签页处理@ddgksf2013
-# ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
-# ～ BiliBili_哔哩哔哩_我的页面处理@ddgksf2013
-#^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 # ～ BiliBili_哔哩哔哩_屏蔽首页右上活动@ddgksf2013
 ^https?:\/\/app\.bilibili\.com\/x\/resource\/top\/activity url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 # ～ BiliBili_哔哩哔哩_热搜发现@ddgksf2013
@@ -44,10 +30,6 @@
 ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/SearchAll$ url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_proto_beta.js
 # ～ BiliBili_哔哩哔哩_交互点赞投票弹幕及会员弹幕@BiliUniverse
 ^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.community\.service\.dm\.v1\.DM\/(DmView|DmSegMobile) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_proto_beta.js
-# ～ BiliBili_哔哩哔哩_青少年弹窗@BiliUniverse
-# ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.interface\.v1\.Teenagers\/ModeStatus url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_proto_beta.js
-# ～ BiliBili_哔哩哔哩_UP主推荐广告[适配ipad端]@BiliUniverse
-# ^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.(view|viewunite)\.v1\.View\/(View|TFInfo)$ url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_proto_beta.js
 # ～ BiliBili_哔哩哔哩_动态综合页及视频页去广告@BiliUniverse
 ^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.dynamic\.v2\.Dynamic\/Dyn(All|Video)$ url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_proto_beta.js
 
