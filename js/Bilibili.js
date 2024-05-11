@@ -9,9 +9,9 @@
 # ～ BiliBili_哔哩哔哩_小卡片广告@ddgksf2013
 ^https://api.bilibili.com/pgc/season/player/cards url reject-dict
 # ～ BiliBili_哔哩哔哩_视频播放下方商品推广@ddgksf2013
-^https?:\/\/api\.bili(api|bili)\.(net|com)\/pgc\/season\/app\/related\/recommend\? url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
+#^https?:\/\/api\.bili(api|bili)\.(net|com)\/pgc\/season\/app\/related\/recommend\? url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 # ～ BiliBili_哔哩哔哩_点击追番Card@ddgksf2013
-^https?:\/\/api\.bilibili\.com\/pgc\/season\/player\/ogv\/cards url reject-dict
+#^https?:\/\/api\.bilibili\.com\/pgc\/season\/player\/ogv\/cards url reject-dict
 
 # ======= BiliJson 开屏及隐私 ======= #
 # ～ BiliBili_哔哩哔哩_屏蔽IP请求@ddgksf2013
@@ -30,7 +30,7 @@
 # ～ BiliBili_哔哩哔哩_标签页处理@ddgksf2013
 # ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 # ～ BiliBili_哔哩哔哩_我的页面处理@ddgksf2013
-^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
+#^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 # ～ BiliBili_哔哩哔哩_屏蔽首页右上活动@ddgksf2013
 ^https?:\/\/app\.bilibili\.com\/x\/resource\/top\/activity url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
 # ～ BiliBili_哔哩哔哩_热搜发现@ddgksf2013
