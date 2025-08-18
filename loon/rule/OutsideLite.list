@@ -4,6 +4,11 @@ DOMAIN-KEYWORD,onedrive
 DOMAIN-SUFFIX,onedrive.com
 DOMAIN-SUFFIX,skype.com
 DOMAIN-SUFFIX,storage.live.com
+# > 91
+DOMAIN-SUFFIX,91zuixindizhi.com
+DOMAIN-SUFFIX,missav.ai
+DOMAIN-SUFFIX,javday.tv
+DOMAIN-SUFFIX,javbus.com
 # > Pornhub
 DOMAIN-SUFFIX,phncdn.com
 DOMAIN-SUFFIX,phprcdn.com
