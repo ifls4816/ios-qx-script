@@ -20,30 +20,13 @@ DOMAIN-SUFFIX,humblebundle.com
 DOMAIN-SUFFIX,steamcommunity.com
 DOMAIN-SUFFIX,steampowered.com
 DOMAIN-SUFFIX,steamstatic.com
-# > Telegram
-USER-AGENT,Instagram*
-DOMAIN-KEYWORD,telegram
-DOMAIN-SUFFIX,t.me
-DOMAIN-SUFFIX,tdesktop.com
-DOMAIN-SUFFIX,telegra.ph
-DOMAIN-SUFFIX,telegram.me
-DOMAIN-SUFFIX,telegram.org
-IP-CIDR,91.108.0.0/16
-IP-CIDR,109.239.140.0/24
-IP-CIDR,149.154.160.0/20
-IP-CIDR6,2001:67c:4e8::/48
-IP-CIDR6,2001:b28:f23d::/48
-IP-CIDR6,2001:b28:f23f::/48
 # > Top blocked sites
 DOMAIN-SUFFIX,91porn.com
 DOMAIN-SUFFIX,apple-dns.net
-DOMAIN-SUFFIX,blog.com
-DOMAIN-SUFFIX,blogcdn.com
 DOMAIN-SUFFIX,cdn.segment.com
 DOMAIN-SUFFIX,cdnst.net
 DOMAIN-SUFFIX,chrome.com
 DOMAIN-SUFFIX,chromecast.com
-DOMAIN-SUFFIX,chromercise.com
 DOMAIN-SUFFIX,chromestatus.com
 DOMAIN-SUFFIX,chromium.org
 DOMAIN-SUFFIX,v2ex.co
@@ -52,33 +35,11 @@ DOMAIN-SUFFIX,v2ray.com
 DOMAIN-SUFFIX,xvideos.com
 # > Force some domains which are fucked by GFW while resolving DNS,or do not respect the system Proxy
 DOMAIN-KEYWORD,dropbox
-DOMAIN-KEYWORD,facebook
 DOMAIN-KEYWORD,github
-DOMAIN-KEYWORD,instagram
-DOMAIN-KEYWORD,whatsapp
 DOMAIN-KEYWORD,google
-DOMAIN-SUFFIX,blogblog.com
 DOMAIN-SUFFIX,chromeexperiments.com
-DOMAIN-SUFFIX,fb.com
-DOMAIN-SUFFIX,fb.me
 DOMAIN-SUFFIX,fbcdn.net
 DOMAIN-SUFFIX,pubnub.com
-# > Facebook
-IP-CIDR,103.4.96.0/22
-IP-CIDR,129.134.0.0/17
-IP-CIDR,157.240.0.0/17
-IP-CIDR,173.252.64.0/19
-IP-CIDR,173.252.96.0/19
-IP-CIDR,179.60.192.0/22
-IP-CIDR,185.60.216.0/22
-IP-CIDR,204.15.20.0/22
-IP-CIDR,31.13.24.0/21
-IP-CIDR,31.13.64.0/18
-IP-CIDR,45.64.40.0/22
-IP-CIDR,66.220.144.0/20
-IP-CIDR,69.171.224.0/19
-IP-CIDR,69.63.176.0/20
-IP-CIDR,74.119.76.0/22
 # > Google
 IP-CIDR,173.194.0.0/16
 IP-CIDR,74.125.0.0/16
