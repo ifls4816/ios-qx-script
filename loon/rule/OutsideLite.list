@@ -40,6 +40,11 @@ DOMAIN-KEYWORD,google
 DOMAIN-SUFFIX,chromeexperiments.com
 DOMAIN-SUFFIX,fbcdn.net
 DOMAIN-SUFFIX,pubnub.com
+# Other
+DOMAIN-SUFFIX,javdb.com
+DOMAIN-SUFFIX,linux.do
+DOMAIN,www.linkcloud.network
+DOMAIN-SUFFIX,kelee.one
 # > Google
 IP-CIDR,173.194.0.0/16
 IP-CIDR,74.125.0.0/16
