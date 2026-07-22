@@ -27,6 +27,7 @@ DOMAIN-SUFFIX,chromestatus.com
 DOMAIN-SUFFIX,chromeexperiments.com
 DOMAIN-SUFFIX,chromium.org
 DOMAIN-SUFFIX,v2ex.com
+DOMAIN-SUFFIX,greasyfork.org
 # > Force some domains which are fucked by GFW while resolving DNS,or do not respect the system Proxy
 DOMAIN-KEYWORD,github
 DOMAIN-KEYWORD,google
