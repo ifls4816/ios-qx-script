@@ -20,7 +20,6 @@ ORDER = switch,false,tag=[订单]隐藏推广,desc=订单列表/详情/物流页
 REVIEW = switch,false,tag=[评价]隐藏评价提醒,desc=待评价、追评提醒
 DETAIL = switch,false,tag=[商品详情]隐藏推荐与引导,desc=详情页下方推荐、补贴引导、直播悬浮
 RECOMMEND = switch,false,tag=[其他]隐藏商品推荐,desc=猜你喜欢等其余推荐商品列表
-SCAN = switch,false,tag=[扫码取件]隐藏推荐与弹窗,desc=扫码取件页面的商品推荐及弹窗
 
 [Rule]
 # 基础规则（始终生效）：拦截拼多多自有 HTTPDNS 和 api 的 QUIC，让请求走普通 HTTPS 以便重写；拦截上报统计域名
@@ -83,9 +82,5 @@ response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/oak\/integration\/re
 # [其他] 商品推荐
 request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/(?:alexa\/goods\/back_up|caterham\/v3\/query\/likes|buffon\/nasus\/recommend)\?/i && ${RECOMMEND} == true then reject_dict(200)
 
-[Script]
-# [扫码取件] 推荐与弹窗（脚本会把页面资源替换为 kelee 修改版，故沿用 kelee 地址）
-response if ${url} ~= /^https:\/\/m\.pinduoduo\.net\/mdkd\/package\?from_app_scan/i && ${SCAN} == true then script("https://kelee.one/Resource/JavaScript/PinDuoDuo/PinDuoDuo_remove_ads.js") with tag="扫码取件页面商品推荐及弹窗", requires_body=true
-
 [MitM]
-hostname = api.pinduoduo.com, m.pinduoduo.net
+hostname = api.pinduoduo.com
