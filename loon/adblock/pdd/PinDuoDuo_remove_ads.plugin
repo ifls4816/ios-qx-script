@@ -1,0 +1,91 @@
+#!name=拼多多去广告
+#!desc=可配置的拼多多去广告：在插件参数里按需打开各项开关（默认全部关闭，仅生效基础规则）。基于 kelee / ZenmoFeiShi 规则修改。
+#!openUrl=https://apps.apple.com/app/id1044283059
+#!author=ZenmoFeiShi[https://github.com/ZenmoFeiShi], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/pdd
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PinDuoDuo.png
+#!date=2026-10-03
+
+[Argument]
+HOME_KINGKONG = switch,false,tag=[首页]隐藏金刚区,desc=首页搜索框下方的图标入口区
+HOME_BANNER = switch,false,tag=[首页]隐藏横幅与顶部氛围图,desc=首页不规则横幅、顶部分类栏的图片
+HOME_ACTIVITY = switch,false,tag=[首页]隐藏会场与活动入口,desc=全局会场、活动聚合、快捷入口、直播活动推送
+TABBAR = switch,false,tag=[底栏]只保留首页、聊天、个人中心,desc=去掉多多视频等底栏标签
+SEARCH = switch,false,tag=[搜索]隐藏热词与推荐,desc=搜索框热词、搜索热搜、结果页扩展推荐
+CHAT = switch,false,tag=[聊天]隐藏精选推荐,desc=聊天列表页的精选推荐与推荐商品
+PERSONAL = switch,false,tag=[个人中心]精简,desc=月卡入口、推广图标、横幅、页面下方推荐商品
+ORDER = switch,false,tag=[订单]隐藏推广,desc=订单列表/详情/物流页的营销横幅、推荐商品与提示
+REVIEW = switch,false,tag=[评价]隐藏评价提醒,desc=待评价、追评提醒
+DETAIL = switch,false,tag=[商品详情]隐藏推荐与引导,desc=详情页下方推荐、补贴引导、直播悬浮
+RECOMMEND = switch,false,tag=[其他]隐藏商品推荐,desc=猜你喜欢等其余推荐商品列表
+SCAN = switch,false,tag=[扫码取件]隐藏推荐与弹窗,desc=扫码取件页面的商品推荐及弹窗
+
+[Rule]
+# 基础规则（始终生效）：拦截拼多多自有 HTTPDNS 和 api 的 QUIC，让请求走普通 HTTPS 以便重写；拦截上报统计域名
+AND, ((URL-REGEX, "^http:\/\/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/d(\d)?"), (USER-AGENT, "*com.xunmeng.pinduoduo*")), REJECT
+AND, ((URL-REGEX, "^http:\/\/\[[0-9a-fA-F:]+\]\/d(\d)?\?"), (USER-AGENT, "*com.xunmeng.pinduoduo*")), REJECT
+AND, ((DOMAIN, api.pinduoduo.com), (PROTOCOL, QUIC)), REJECT
+DOMAIN, titan.pinduoduo.com, REJECT
+DOMAIN, xg.pinduoduo.com, REJECT
+DOMAIN, cdl-1.pddpic.com, REJECT
+DOMAIN, cdl-p2.pddpic.com, REJECT
+DOMAIN, cd-1.pddpic.com, REJECT
+DOMAIN, apm.pinduoduo.com, REJECT
+DOMAIN, apm-a.pinduoduo.com, REJECT
+DOMAIN, th.pinduoduo.com, REJECT
+DOMAIN, th-a.pinduoduo.com, REJECT
+DOMAIN, th-b.pinduoduo.com, REJECT
+DOMAIN, ta.pinduoduo.com, REJECT
+DOMAIN, ta-a.pinduoduo.com, REJECT
+DOMAIN, meta.pinduoduo.com, REJECT
+
+[Rewrite]
+# [首页] 金刚区
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?/i && ${HOME_KINGKONG} == true then response.json.delete("result.icon_set")
+
+# [首页] 横幅与顶部氛围图
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?/i && ${HOME_BANNER} == true then response.json.delete("result.dy_module.irregular_banner_dy")
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?/i && ${HOME_BANNER} == true then response.json.jq(".result.all_top_opts |= map(del(.selected_image, .image, .height, .width))")
+
+# [首页] 会场与活动入口
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/(?:aquarius\/hungary\/global\/homepage|growth\/nagato\/app\/index\/gather|manufacturer\/cross\/shortcut\/list|dunkirk\/liveactivity\/push\/create\/url\/report)\?/i && ${HOME_ACTIVITY} == true then reject_dict(200)
+
+# [底栏] 只保留首页、聊天、个人中心
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?/i && ${TABBAR} == true then response.json.jq(".result.bottom_tabs? |= map(select(.link | IN(\"index.html\", \"chat_list.html\", \"personal.html\"))) | .result.buffer_bottom_tabs? |= map(select(.link | IN(\"index.html\", \"chat_list.html\", \"personal.html\")))")
+
+# [搜索] 热词与推荐
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?/i && ${SEARCH} == true then response.json.delete("result.search_bar_hot_query")
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/search_hotquery\?/i && ${SEARCH} == true then reject_dict(200)
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/search\?/i && ${SEARCH} == true then response.json.delete("expansion")
+
+# [聊天] 精选推荐
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/(?:zaire_biz\/chat\/resource\/get_list_data|caterham\/v3\/query\/new_chat_group)\?/i && ${CHAT} == true then reject_dict(200)
+
+# [个人中心] 精简
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/philo\/personal\/hub\?/i && ${PERSONAL} == true then response.json.delete(["monthly_card_entrance", "personal_center_style_v2_vo", "icon_set.icons", "icon_set.top_personal_icons", "personal_banner"])
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal\?/i && ${PERSONAL} == true then reject_dict(200)
+
+# [订单] 推广
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/(?:aristotle\/(?:unrated_order_for_unreceived_tab|query_order_list_tabs_element)|caterham\/v3\/query\/(?:order_express_group|my_order_group))\?/i && ${ORDER} == true then reject_dict(200)
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_detail_group\?/i && ${ORDER} == true then response.json.delete("data.goods_list")
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/order\//i && ${ORDER} == true then response.json.delete(["marketing_banner_vo", "shipping.banner_above_recommend"])
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/order_list_v4\?/i && ${ORDER} == true then response.json.jq(".orders |= map(.order_buttons |= map(del(.order_growth_tip)))")
+
+# [评价] 提醒
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/engels\/(?:reviews\/require\/append|wait\/receive\/review)\?/i && ${REVIEW} == true then reject_dict(200)
+
+# [商品详情] 推荐与引导
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/(?:brand-olay\/goods_detail\/bybt_guide|phantom\/gbdbpdv\/extra|caterham\/v2\/query\/goods_detail_with_tags)\?/i && ${DETAIL} == true then reject_dict(200)
+response if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/oak\/integration\/render\?/i && ${DETAIL} == true then response.json.delete(["bottom_section_list", "ui.bottom_section", "ui.live_section.float_info"])
+
+# [其他] 商品推荐
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/(?:alexa\/goods\/back_up|caterham\/v3\/query\/likes|buffon\/nasus\/recommend)\?/i && ${RECOMMEND} == true then reject_dict(200)
+
+[Script]
+# [扫码取件] 推荐与弹窗（脚本会把页面资源替换为 kelee 修改版，故沿用 kelee 地址）
+response if ${url} ~= /^https:\/\/m\.pinduoduo\.net\/mdkd\/package\?from_app_scan/i && ${SCAN} == true then script("https://kelee.one/Resource/JavaScript/PinDuoDuo/PinDuoDuo_remove_ads.js") with tag="扫码取件页面商品推荐及弹窗", requires_body=true
+
+[MitM]
+hostname = api.pinduoduo.com, m.pinduoduo.net
