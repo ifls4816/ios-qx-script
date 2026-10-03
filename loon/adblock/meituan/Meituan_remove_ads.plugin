@@ -1,7 +1,6 @@
 #!name=美团去广告
-#!desc=拦截美团广告与统计上报域名。部分情况需清除 App 缓存或重装后生效。移植自 fmz200/wool_scripts（上游已停止更新）。
+#!desc=拦截美团广告与统计上报域名。
 #!openUrl=https://apps.apple.com/app/id423084029
-#!author=奶思[https://github.com/fmz200/wool_scripts]
 #!tag=去广告
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/meituan
