@@ -5,9 +5,9 @@
 #!tag=去广告
 #!loon_version=3.5.1(998)
 
-[Script]
-# 开屏广告：get_banner_info 只删「开屏」条目
-response if ${url} ~= /^https:\/\/m\.gffunds\.com\.cn\/gff\/api\/get_banner_info\.vir/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/gffund/GFFund_remove_ads.js") with tag="移除开屏广告", requires_body=true
+[Rewrite]
+# 开屏广告：get_banner_info 与首页各位置横幅共用，只删 exposure_way 为「开屏」的条目（Loon 内置 jq，无需脚本）
+response if ${url} ~= /^https:\/\/m\.gffunds\.com\.cn\/gff\/api\/get_banner_info\.vir/i then response.json.jq("if (.banner_list | type) == \"array\" then .banner_list |= map(select(.exposure_way != \"开屏\")) else . end")
 
 [MitM]
 # 只解密规则用到的域名
