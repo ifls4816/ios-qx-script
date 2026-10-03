@@ -1,0 +1,21 @@
+#!name=美团去广告
+#!desc=拦截美团广告与统计上报域名。部分情况需清除 App 缓存或重装后生效。移植自 fmz200/wool_scripts（上游已停止更新）。
+#!openUrl=https://apps.apple.com/app/id423084029
+#!author=奶思[https://github.com/fmz200/wool_scripts]
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/meituan
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MeiTuanItakeaway.png
+#!date=2026-10-03
+
+[Rule]
+DOMAIN-SUFFIX, meituan.xn, REJECT
+DOMAIN-SUFFIX, meituan.yoga, REJECT
+DOMAIN-SUFFIX, meituangov.cn, REJECT
+DOMAIN-SUFFIX, report.meituan.com, REJECT
+DOMAIN-SUFFIX, analytics.meituan.net, REJECT
+DOMAIN-SUFFIX, wmlog.meituan.com, REJECT
+DOMAIN-SUFFIX, ad.e.waimai.sankuai.com, REJECT
+DOMAIN-SUFFIX, mads.meituan.com, REJECT
+DOMAIN-SUFFIX, dreport.meituan.net, REJECT
+DOMAIN-SUFFIX, d.meituan.net, REJECT

@@ -1,0 +1,22 @@
+#!name=12123去广告
+#!desc=拦截交管 12123 广告接口及相关广告、统计域名。部分情况需清除 App 缓存或重装后生效。移植自 fmz200/wool_scripts（上游已停止更新）。
+#!openUrl=https://apps.apple.com/app/id1039727169
+#!author=奶思[https://github.com/fmz200/wool_scripts]
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/12123
+#!date=2026-10-03
+
+[Rule]
+DOMAIN-SUFFIX, v3.fstats.xyz, REJECT
+DOMAIN-SUFFIX, wss.haoyundmn.com, REJECT
+DOMAIN-SUFFIX, new.xiongzhangad.com, REJECT
+DOMAIN-SUFFIX, alexametrics.com, REJECT
+DOMAIN-KEYWORD, in-page-push, REJECT
+
+[Rewrite]
+# 广告接口（原写法 reject，即返回 404）
+request if ${url} ~= /^https?:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$/i then reject(404)
+
+[MitM]
+hostname = gab.122.gov.cn
