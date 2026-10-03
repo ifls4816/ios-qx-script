@@ -1,5 +1,5 @@
 #!name=高德地图去广告
-#!desc=过滤开屏广告、首页扫街榜图标、我的页面推广卡片及各页面推广。基于 RuCu6 / kelee 规则修改。
+#!desc=过滤开屏广告、首页扫街榜图标、我的页面推广卡片及各页面推广，拦截日志与众包数据上报。基于 RuCu6 / kelee 规则修改。
 #!openUrl=https://apps.apple.com/app/id461703208
 #!author=RuCu6[https://github.com/RuCu6], kelv1n1n[https://github.com/kelv1n1n], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
 #!tag=去广告
@@ -41,6 +41,14 @@ request if ${url} ~= /^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:order\/car\/(?:f
 request if ${url} ~= /^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:pay\/web\/paySuccess\/info\/request|transportation\/diversion\/resource\/driving)/i then reject_dict(200)
 response if ${url} ~= /^https:\/\/m5-zb\.amap\.com\/ws\/sharedtrip\/taxi\/order_detail_car_tips\?/i then response.json.delete("data.carTips.data.popupInfo")
 
+# 日志上报：本地直接返回空的成功响应，数据不发出去。账号安全(device_reporting)、会话(session-report)、同步(sync) 不拦，避免风控和功能异常
+request if ${url} ~= /^https:\/\/m5-x\.amap\.com\/+ws\/shield\/(?:alc\/collect|amapstream\/upload)/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/awaken\.amap\.com\/ws\/h5_log/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/user\/fatigue\/report/i then reject_dict(200)
+# 众包数据上传（定位指纹、路况采集）
+request if ${url} ~= /^https:\/\/fp\.amap\.com\/ws\/shield\/location\/fp\/reports/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/shield\/highway\/collect/i then reject_dict(200)
+
 [Script]
 response if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/amap/Amap_remove_ads.js") with tag="移除路线规划推广", requires_body=true
 response if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/amap/Amap_remove_ads.js") with tag="移除路线规划、导航结束页推广", requires_body=true
@@ -60,5 +68,5 @@ response if ${url} ~= /^https:\/\/(?:info|m5)\.amap\.com\/ws\/shield\/search\/(?
 response if ${url} ~= /^https:\/\/sns\.amap\.com\/ws\/opc\/tools\/list/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/amap/Amap_remove_ads.js") with tag="移除工具箱扫街榜", requires_body=true
 
 [MitM]
-# 只解密规则用到的域名；地图瓦片、定位、日志上报等不经过 MitM
-hostname=m5.amap.com, m5-zb.amap.com, sns.amap.com, oss.amap.com, ai.amap.com, info.amap.com
+# 只解密规则用到的域名
+hostname = m5.amap.com, oss.amap.com, ai.amap.com, sns.amap.com, m5-zb.amap.com, m5-x.amap.com, awaken.amap.com, fp.amap.com, info.amap.com
