@@ -1,0 +1,9 @@
+#!name=emby
+#!desc=emby
+#!date=2026-10-03
+
+[Script]
+response if ${url} ~= /^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice/i then script("https://raw.githubusercontent.com/Tartarus2014/Script/master/Emby.js") with tag="EMBY", requires_body=true
+
+[MitM]
+hostname=mb3admin.com
