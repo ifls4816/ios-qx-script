@@ -1,0 +1,50 @@
+#!name=闲鱼去广告
+#!date=2026-10-03
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/xianyu
+#!desc=移除开屏广告、首页集市/圈子/回收 tab 与推广、信息流广告、搜索页热搜榜与猜你在找，精简我的页面（闲鱼回收、闲鱼币、猜你喜欢、会员横幅）。基于 RuCu6 / kelee 规则修改。
+#!openUrl=https://apps.apple.com/app/id510909506
+#!author=RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ZenMoFiShi[https://github.com/ZenmoFeiShi]
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/FleaMarket.png
+
+[Rule]
+# 来自 RuCu6：拦截阿里 AMDC 调度，迫使闲鱼走普通 HTTPS（否则 mtop 请求走长连接，MitM 改不到）。UA 为 URL 编码的「闲鱼」
+AND, ((URL-REGEX, "^http:\/\/.+\/amdc\/mobileDispatch"), (USER-AGENT, "%E9%97%B2%E9%B1%BC*")), REJECT
+# 闲鱼的 mtop 请求可走 QUIC(HTTP/3)，MitM 解密不了；只对闲鱼域名屏蔽 QUIC，让它退回 TCP 上的 HTTPS
+AND, ((PROTOCOL, QUIC), (DOMAIN-SUFFIX, goofish.com)), REJECT
+
+[Rewrite]
+# 来自 kelee（首页 nextfresh、widget.refresh 与我的页面 my.adapter 改由脚本处理）
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\//i then reject_dict(200)
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.user\.strategy\.list\//i then reject_dict(200)
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.fun\.follow\.feed\.list\//i then response.json.jq(".data.sections|=map(select(.cardType==2001))")
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.community\//i then response.json.jq(".data.feedsList |= map(select(.template.name == \"idlefish_home_new_commodity_card\" or .template.name == \"idlefish_home_new_content_card\"))")
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.item\.recommend\.list\//i then reject_dict(200)
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.newitem\.page\//i then response.json.jq(".data.sections |= map(select(.data.clickParam.args.cardType as $ct | $ct != \"banner\" and $ct != \"mamaAD\"))")
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.near\.by\.corner\.info\//i then reject_dict(200)
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.flow\.plat\.section\//i then response.json.jq(".data.data.components |= map(select(.data and (.data|type==\"object\") and .data.template and (.data.template|type==\"object\") and .data.template.name and (.data.template.name|type==\"string\") and (.data.template.name|contains(\"fish_city_kingkong\"))))")
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.home\.top\//i then response.json.jq(".data.data.components |= map(select(.key == \"fish_home_second_stage_top_cardV3\"))")
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.home\//i then response.json.jq(".data.sections |= map(select((.template.cardEnum != \"ads\") and (.cardType == \"common\")))")
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.item\.buy\.feeds\//i then reject_dict(200)
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\.shade\//i then reject_dict(200)
+response if ${url} ~= /^https:\/\/g-acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\//i then response.json.jq(".data.resultList |= map(if .data.item.main.exContent.dislikeFeedback.clickParam.args.bizType == \"ad\" then empty else . end)")
+response if ${url} ~= /^https:\/\/g-acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\//i then response.json.delete("data.resultPrefixBar")
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.playboy\.recommend\//i then reject_dict(200)
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.trade\.full\.info\//i then response.json.jq(".data.components |= map(select(.render | . == \"orderStatusVO\" or . == \"addressInfoVO\" or . == \"orderInfoVO\"))")
+# 搜索页榜单面板各 tab 的内容（闲鱼热搜、搜索发现、省钱神券等）
+request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.(?:search\.activate\.(?:trendlist|industrylist)|search\.discover)\//i then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.nextfresh\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="首页信息流与顶部", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.widget\.refresh\.get\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="首页顶部组件", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.idle\.user\.page\.my\.adapter\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="我的页面", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.circle\.list\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="首页顶部tab", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.home\.whale\.modulet\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="首页模块", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.magic\.home\.page\.list\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="首页置顶", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.item\.search\.activate\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="搜索页猜你在找", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\.activate\.tablist\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/xianyu/Xianyu_remove_ads.js") with tag="搜索页热搜面板", requires_body=true
+
+[MitM]
+# 只解密规则用到的域名
+hostname = acs.m.goofish.com, g-acs.m.goofish.com
