@@ -1,7 +1,6 @@
 #!name=12123去广告
-#!desc=拦截交管 12123 广告接口及相关广告、统计域名。部分情况需清除 App 缓存或重装后生效。移植自 fmz200/wool_scripts（上游已停止更新）。
+#!desc=拦截交管 12123 广告接口及相关广告、统计域名
 #!openUrl=https://apps.apple.com/app/id1039727169
-#!author=奶思[https://github.com/fmz200/wool_scripts]
 #!tag=去广告
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/12123
