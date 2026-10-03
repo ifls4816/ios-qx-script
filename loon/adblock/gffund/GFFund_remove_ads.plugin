@@ -1,0 +1,16 @@
+#!name=广发基金去广告
+#!desc=移除广发基金 App 开屏广告（只删开屏条目，首页横幅不受影响）。
+#!openUrl=https://apps.apple.com/cn/search?term=%E5%B9%BF%E5%8F%91%E5%9F%BA%E9%87%91
+#!author=ifls4816
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/gffund
+#!date=2026-10-03
+
+[Rewrite]
+# 开屏广告与各位置横幅共用 get_banner_info 接口（开屏为 page=34，参数在加密请求体里无法按 URL 区分），
+# 所以只删除 exposure_way 为「开屏」的条目
+response if ${url} ~= /^https:\/\/m\.gffunds\.com\.cn\/gff\/api\/get_banner_info\.vir/i then response.json.jq("if (.banner_list | type) == \"array\" then .banner_list |= map(select(.exposure_way != \"开屏\")) else . end")
+
+[MitM]
+hostname = m.gffunds.com.cn
