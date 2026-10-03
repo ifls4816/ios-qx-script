@@ -1,7 +1,6 @@
 #!name=拼多多去广告
 #!desc=可配置的拼多多去广告：在插件参数里按需打开各项开关（默认全部关闭，仅生效基础规则）。基于 kelee / ZenmoFeiShi 规则修改。
 #!openUrl=https://apps.apple.com/app/id1044283059
-#!author=ZenmoFeiShi[https://github.com/ZenmoFeiShi], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
 #!tag=去广告
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/pdd

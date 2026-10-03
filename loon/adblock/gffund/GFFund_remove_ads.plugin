@@ -2,7 +2,6 @@
 #!date=2026-10-03
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/gffund
 #!desc=移除广发基金 App 开屏广告（只删开屏条目，首页横幅不受影响；开屏后约 4 秒的等待为 App 内置计时，无法去除）。
-#!author=ifls4816
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

@@ -1,7 +1,6 @@
 #!name=高德地图去广告
 #!desc=过滤开屏广告、首页扫街榜图标、我的页面推广卡片及各页面推广，拦截日志与众包数据上报。基于 RuCu6 / kelee 规则修改。
 #!openUrl=https://apps.apple.com/app/id461703208
-#!author=RuCu6[https://github.com/RuCu6], kelv1n1n[https://github.com/kelv1n1n], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
 #!tag=去广告
 #!system=
 #!system_version=
