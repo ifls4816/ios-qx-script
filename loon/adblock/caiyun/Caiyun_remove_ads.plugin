@@ -1,0 +1,25 @@
+#!name=彩云天气去广告
+#!date=2026-10-03
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/caiyun
+#!desc=移除底栏小助手、首页及地图页卡片广告位、推广横幅、节日活动与反馈弹窗等，保留限行、空气质量等快捷入口。
+#!openUrl=https://apps.apple.com/app/id847764912
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ColorfulClouds.png
+
+[Rule]
+DOMAIN, abyss.cyapi.cn, REJECT
+DOMAIN, ad.cyapi.cn, REJECT
+DOMAIN, gather.colorfulclouds.net, REJECT
+
+[Rewrite]
+request if ${url} ~= /^https:\/\/biz\.cyapi\.cn\/(p\/v1\/entries|p\/v1\/trial_card\/info|v2\/product)/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w+\/conditions|notification\/message_center|operation\/homefeatures)/i then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/caiyun/Caiyun_remove_ads.js") with tag="彩云天气去广告", requires_body=true
+response if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/config(?:\?|$)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/adblock/caiyun/Caiyun_remove_ads.js") with tag="移除卡片广告位", requires_body=true
+
+[MitM]
+# 比 kelee 多了 wrapper.cyapi.cn：脚本规则匹配它，但 kelee 没加进 MitM，那部分处理从未生效
+hostname = biz.cyapi.cn, starplucker.cyapi.cn, wrapper.cyapi.cn, api.caiyunapp.com, cdn-w.caiyunapp.com
