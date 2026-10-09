@@ -37,6 +37,7 @@ DOMAIN-SUFFIX,fbcdn.net
 DOMAIN-SUFFIX,linux.do
 DOMAIN,www.linkcloud.network
 DOMAIN-SUFFIX,kelee.one
+DOMAIN-SUFFIX,jdbstatic
 # > Google
 IP-CIDR,173.194.0.0/16
 IP-CIDR,74.125.0.0/16
