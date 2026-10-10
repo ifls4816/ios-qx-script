@@ -1,5 +1,5 @@
 #!name=高德地图去广告
-#!desc=过滤开屏广告、首页扫街榜图标、我的页面推广卡片及各页面推广，拦截日志与众包数据上报。基于 RuCu6 / kelee 规则修改。
+#!desc=过滤开屏广告、首页扫街榜图标、我的页面推广卡片、路线页签到卡片及各页面推广，拦截日志与众包数据上报。基于 RuCu6 / kelee 规则修改。
 #!openUrl=https://apps.apple.com/app/id461703208
 #!tag=去广告
 #!system=
@@ -7,7 +7,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/adblock/amap
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Amap.png
-#!date=2026-10-03
+#!date=2026-10-10
 
 [Rule]
 # 来自 RuCu6：拦截阿里 AMDC 调度，迫使高德走普通 HTTPS（否则请求走长连接，MitM 改不到）
@@ -33,6 +33,9 @@ request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/(?:mapapi\/hint_text\/offlin
 request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/shield\/scene\/recommend\?/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/valueadded\/weather\/v2\?/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull_mp\?/i then reject_dict(200)
+
+# 路线规划页（公交）底部「已签N天，领X元券」签到卡片：接口只返回这张卡片
+request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/aos\/activity\/bus\/sign\/task/i then reject_dict(200)
 
 # 来自 RuCu6：附近卡片
 request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/c3frontend\/af-comment\/contentNearbyCard\?/i then reject_dict(200)
