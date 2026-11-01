@@ -54,16 +54,6 @@ IP-CIDR6,2405:1480:3000:303b::303b/128,REJECT
 IP-CIDR6,2405:1480:1000:3::1e/128,REJECT
 IP-CIDR6,2405:1480:1000:4::15/128,REJECT
 IP-CIDR6,2402:4e00:40:40::2:373/128,REJECT
-DOMAIN-SUFFIX,meituan.xn,REJECT
-DOMAIN-SUFFIX,meituan.yoga,REJECT
-DOMAIN-SUFFIX,meituangov.cn,REJECT
-DOMAIN-SUFFIX,report.meituan.com,REJECT
-DOMAIN-SUFFIX,analytics.meituan.net,REJECT
-DOMAIN-SUFFIX,wmlog.meituan.com,REJECT
-DOMAIN-SUFFIX,ad.e.waimai.sankuai.com,REJECT
-DOMAIN-SUFFIX,mads.meituan.com,REJECT
-DOMAIN-SUFFIX,dreport.meituan.net,REJECT
-DOMAIN-SUFFIX,d.meituan.net,REJECT
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/(httpdns|httpdnsvip|httpdnsmultiapi|httpdnsmultiapivip)\.meituan\.com\//i then reject(200)
