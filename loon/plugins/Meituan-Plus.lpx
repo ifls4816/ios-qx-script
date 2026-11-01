@@ -1,11 +1,13 @@
 #!name=美团
 #!desc=拦截美团广告与上报域名，并清理首页多余标签页、我的页推荐、搜索热词、开屏图、购物车顶栏等推广内容。
-#!author=TG@ZenMoFiShi
 #!openUrl=https://apps.apple.com/app/id423084029
 #!tag=去广告
+#!system=
+#!system_version=
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
 #!date=2026-11-01
+
 
 [Rule]
 DOMAIN,shark-mt.meituan.com,REJECT
@@ -66,4 +68,4 @@ response if ${url} ~= /^https?:\/\/mop\.meituan\.com\/mop\/entry\/shoppingCartEn
 response if ${url} ~= /^https?:\/\/mop\.meituan\.com\/api\/entryModule\/startupPicture/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/MeituanClean.js") with tag="美团", requires_body=true
 
 [MitM]
-hostname = %APPEND% apimobile.meituan.com, feedguess.meituan.com, mop.meituan.com, mt-personalcenter.meituan.com, assistify.meituan.com, httpdns.meituan.com, httpdnsmultiapi.meituan.com, gaea.meituan.com
+hostname = apimobile.meituan.com, feedguess.meituan.com, mop.meituan.com, mt-personalcenter.meituan.com, assistify.meituan.com, httpdns.meituan.com, httpdnsmultiapi.meituan.com, gaea.meituan.com
