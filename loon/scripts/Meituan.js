@@ -1,7 +1,3 @@
-// 美团 App 界面清理脚本（响应体改写）
-// 由 ZenMoFeiShi 的 QX 版 MT.js 转换：只用到 $request / $response / $done，Loon 可直接运行
-// 上游：https://github.com/ZenmoFeiShi/Qx/blob/main/MT.js
-
 const mtqxUrl = (typeof $request !== "undefined" && $request && $request.url) || "";
 const mtqxHideTabs = ["video", "xiaotuan"];
 const mtqxKeepTabs = ["homepage", "mine"];
