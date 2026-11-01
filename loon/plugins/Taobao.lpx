@@ -31,9 +31,9 @@ request if ${url} ~= /^https:\/\/(?:gw|heic)\.alicdn\.com\/imgextra\/i\d\/\d*\/?
 request if ${url} ~= /^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(volvo\.secondfloor\.getconfig|wireless\.home\.newface\.awesome\.get)/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Taobao_remove_ads.js") with tag="移除淘宝开屏广告", requires_body=true
+response if ${url} ~= /^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Taobao.js") with tag="移除淘宝开屏广告", requires_body=true
 
-response if ${url} ~= /^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Taobao_remove_ads.js") with tag="移除淘宝开屏广告", requires_body=true
+response if ${url} ~= /^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Taobao.js") with tag="移除淘宝开屏广告", requires_body=true
 
 [MitM]
 hostname=acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com

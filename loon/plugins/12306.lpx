@@ -17,7 +17,7 @@ response if ${url} ~= /^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$/i then resp
 
 [Script]
 
-request if ${url} ~= /^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/12306_remove_ads.js") with tag="移除12306应用内广告"
+request if ${url} ~= /^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/12306.js") with tag="移除12306应用内广告"
 
 [MitM]
 hostname=ad.12306.cn, mobile.12306.cn

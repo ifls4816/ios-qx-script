@@ -16,8 +16,8 @@ request if ${url} ~= /^https:\/\/biz\.cyapi\.cn\/(p\/v1\/entries|p\/v1\/trial_ca
 request if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w+\/conditions|notification\/message_center|operation\/homefeatures)/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun_remove_ads.js") with tag="彩云天气去广告", requires_body=true
-response if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/config(?:\?|$)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun_remove_ads.js") with tag="移除卡片广告位", requires_body=true
+response if ${url} ~= /^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun.js") with tag="彩云天气去广告", requires_body=true
+response if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/config(?:\?|$)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun.js") with tag="移除卡片广告位", requires_body=true
 
 [MitM]
 # wrapper.cyapi.cn 必须列进 MitM：脚本规则会匹配它，漏了这部分处理永远不生效

@@ -18,7 +18,7 @@ request if ${url} ~= /^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(se
 response if ${url} ~= /^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=basicConfig/i then response.json.replace(["data.JDMessage.socketmonitor.isSocketEstablishedAhead", "data.JDMessage.socketmonitor.isSocketReport", "data.JDHttpToolKit.httpdns.httpdns"], [0, 0, 0])
 
 [Script]
-response if ${url} ~= /^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/JD_remove_ads.js") with tag="移除京东广告", requires_body=true
+response if ${url} ~= /^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/JD.js") with tag="移除京东广告", requires_body=true
 
 [MitM]
 hostname=api.m.jd.com

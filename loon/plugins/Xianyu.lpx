@@ -34,14 +34,14 @@ response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.
 request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.(?:search\.activate\.(?:trendlist|industrylist)|search\.discover)\//i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.nextfresh\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="首页信息流与顶部", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.widget\.refresh\.get\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="首页顶部组件", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.idle\.user\.page\.my\.adapter\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="我的页面", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.circle\.list\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="首页顶部tab", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.home\.whale\.modulet\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="首页模块", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.magic\.home\.page\.list\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="首页置顶", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.item\.search\.activate\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="搜索页猜你在找", requires_body=true
-response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\.activate\.tablist\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu_remove_ads.js") with tag="搜索页热搜面板", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.nextfresh\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="首页信息流与顶部", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.widget\.refresh\.get\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="首页顶部组件", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.idle\.user\.page\.my\.adapter\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="我的页面", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.circle\.list\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="首页顶部tab", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.home\.whale\.modulet\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="首页模块", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.magic\.home\.page\.list\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="首页置顶", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.item\.search\.activate\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="搜索页猜你在找", requires_body=true
+response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\.activate\.tablist\//i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Xianyu.js") with tag="搜索页热搜面板", requires_body=true
 
 [MitM]
 # 只解密规则用到的域名
