@@ -1,14 +1,22 @@
-# > 91
-DOMAIN-SUFFIX,91zuixindizhi.com
-DOMAIN-SUFFIX,missav.ai
-DOMAIN-SUFFIX,javday.tv
-DOMAIN-SUFFIX,javbus.com
+# OutsideLite — 合并自 Loon 版与 QX 版（QX 的 HOST-* 已转为 DOMAIN-*，IP6-CIDR 转为 IP-CIDR6）
+# > UA
+USER-AGENT,Instagram*
+# > Microsoft Proxy
+USER-AGENT,OneDrive*
+DOMAIN-KEYWORD,onedrive
+DOMAIN-SUFFIX,onedrive.com
+DOMAIN-SUFFIX,skype.com
+DOMAIN-SUFFIX,storage.live.com
+# > PayPal
+USER-AGENT,PayPal*
+DOMAIN-KEYWORD,paypal
+DOMAIN-SUFFIX,paypal.com
+DOMAIN-SUFFIX,paypalobjects.com
 # > Pornhub
 DOMAIN-SUFFIX,phncdn.com
 DOMAIN-SUFFIX,phprcdn.com
 DOMAIN-SUFFIX,pornhub.com
 DOMAIN-SUFFIX,pornhubpremium.com
-DOMAIN-SUFFIX,xvideos.com
 DOMAIN-SUFFIX,javdb.com
 # > Steam
 DOMAIN-SUFFIX,fanatical.com
@@ -16,27 +24,119 @@ DOMAIN-SUFFIX,humblebundle.com
 DOMAIN-SUFFIX,steamcommunity.com
 DOMAIN-SUFFIX,steampowered.com
 DOMAIN-SUFFIX,steamstatic.com
+# > Telegram
+DOMAIN-KEYWORD,telegram
+DOMAIN-SUFFIX,t.me
+DOMAIN-SUFFIX,tdesktop.com
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,telegram.org
+IP-CIDR,91.108.0.0/16
+IP-CIDR,109.239.140.0/24
+IP-CIDR,149.154.160.0/20
+IP-CIDR6,2001:67c:4e8::/48
+IP-CIDR6,2001:b28:f23d::/48
+IP-CIDR6,2001:b28:f23f::/48
 # > Top blocked sites
 DOMAIN-SUFFIX,91porn.com
+DOMAIN-SUFFIX,adblockplus.org
+DOMAIN-SUFFIX,amazon.co
+DOMAIN-SUFFIX,amazon.com
+DOMAIN-SUFFIX,amazonaws.com
+DOMAIN-SUFFIX,android.com
+DOMAIN-SUFFIX,androidify.com
+DOMAIN-SUFFIX,android-x86.org
+DOMAIN-SUFFIX,angularjs.org
+DOMAIN-SUFFIX,api.tiktokv.com
+DOMAIN-SUFFIX,apkpure.com
 DOMAIN-SUFFIX,apple-dns.net
+DOMAIN-SUFFIX,blog.com
+DOMAIN-SUFFIX,blogcdn.com
+DOMAIN-SUFFIX,books.com.tw
 DOMAIN-SUFFIX,cdn.segment.com
 DOMAIN-SUFFIX,cdnst.net
 DOMAIN-SUFFIX,chrome.com
 DOMAIN-SUFFIX,chromecast.com
+DOMAIN-SUFFIX,chromercise.com
 DOMAIN-SUFFIX,chromestatus.com
-DOMAIN-SUFFIX,chromeexperiments.com
 DOMAIN-SUFFIX,chromium.org
+DOMAIN-SUFFIX,v2ex.co
 DOMAIN-SUFFIX,v2ex.com
+DOMAIN-SUFFIX,v2ray.com
+DOMAIN-SUFFIX,xvideos.com
+DOMAIN-SUFFIX,yahoo.com
+DOMAIN-SUFFIX,yahooapis.com
 DOMAIN-SUFFIX,greasyfork.org
 DOMAIN-SUFFIX,sleazyfork.org
 # > Force some domains which are fucked by GFW while resolving DNS,or do not respect the system Proxy
+DOMAIN-KEYWORD,dropbox
+DOMAIN-KEYWORD,facebook
 DOMAIN-KEYWORD,github
+DOMAIN-KEYWORD,instagram
+DOMAIN-KEYWORD,whatsapp
 DOMAIN-KEYWORD,google
+DOMAIN-SUFFIX,blogblog.com
+DOMAIN-SUFFIX,chromeexperiments.com
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fb.me
 DOMAIN-SUFFIX,fbcdn.net
-# Other
-DOMAIN-SUFFIX,linux.do
-DOMAIN,www.linkcloud.network
-DOMAIN-SUFFIX,jdbstatic
+DOMAIN-SUFFIX,pubnub.com
+# > Facebook
+IP-CIDR,103.4.96.0/22
+IP-CIDR,129.134.0.0/17
+IP-CIDR,157.240.0.0/17
+IP-CIDR,173.252.64.0/19
+IP-CIDR,173.252.96.0/19
+IP-CIDR,179.60.192.0/22
+IP-CIDR,185.60.216.0/22
+IP-CIDR,204.15.20.0/22
+IP-CIDR,31.13.24.0/21
+IP-CIDR,31.13.64.0/18
+IP-CIDR,45.64.40.0/22
+IP-CIDR,66.220.144.0/20
+IP-CIDR,69.171.224.0/19
+IP-CIDR,69.63.176.0/20
+IP-CIDR,74.119.76.0/22
 # > Google
 IP-CIDR,173.194.0.0/16
 IP-CIDR,74.125.0.0/16
+# > Youtube
+USER-AGENT,*youtube*
+USER-AGENT,YouTube*
+DOMAIN-KEYWORD,youtube
+DOMAIN,yt3.ggpht.com
+DOMAIN-SUFFIX,googlevideo.com
+DOMAIN-SUFFIX,gvt2.com
+DOMAIN-SUFFIX,youtu.be
+DOMAIN,youtubei.googleapis.com
+DOMAIN-SUFFIX,ytimg.com
+# > Twitter
+DOMAIN-KEYWORD,twitter
+DOMAIN-SUFFIX,periscope.tv
+DOMAIN-SUFFIX,pscp.tv
+DOMAIN-SUFFIX,t.co
+DOMAIN-SUFFIX,tellapart.com
+DOMAIN-SUFFIX,tweetdeck.com
+DOMAIN-SUFFIX,twimg.co
+DOMAIN-SUFFIX,twimg.com
+DOMAIN-SUFFIX,twimg.org
+DOMAIN-SUFFIX,twitpic.com
+DOMAIN-SUFFIX,twtrdns.net
+DOMAIN-SUFFIX,twttr.com
+DOMAIN-SUFFIX,vine.co
+IP-CIDR,104.244.42.0/21
+IP-CIDR,192.133.76.0/22
+IP-CIDR,199.16.156.0/22
+IP-CIDR,199.59.148.0/22
+IP-CIDR,199.96.56.0/21
+IP-CIDR,202.160.128.0/22
+IP-CIDR,209.237.192.0/19
+IP-CIDR,69.195.160.0/19
+# > 91
+DOMAIN-SUFFIX,91zuixindizhi.com
+DOMAIN-SUFFIX,missav.ai
+DOMAIN-SUFFIX,javday.tv
+DOMAIN-SUFFIX,javbus.com
+# > Other
+DOMAIN-SUFFIX,linux.do
+DOMAIN,www.linkcloud.network
