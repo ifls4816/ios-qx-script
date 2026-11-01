@@ -1,0 +1,25 @@
+#!name=中国联通
+#!desc=移除开屏广告、首页广告与欢迎页广告。首次使用建议删除 App 重装，清掉本地缓存的广告素材。基于 fmz200 规则修改。
+#!openUrl=https://apps.apple.com/app/id416457422
+#!author=奶思[https://github.com/fmz200/wool_scripts]
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ChinaUnicom.png
+#!date=2026-11-01
+
+[Rule]
+DOMAIN-SUFFIX, m1.ad.10010.com, REJECT
+
+[Rewrite]
+# 开屏 / 客户端广告
+request if ${url} ~= /^https?:\/\/m\.client\.10010\.com\/mobileService\/(activity|customer)\/(accountListData|get_client_adv|get_startadv)/i then reject_dict(200)
+# 客户端配置
+request if ${url} ~= /^https?:\/\/m\.client\.10010\.com\/mobileService\/customer\/getclientconfig\.htm/i then reject_dict(200)
+# 首页广告 / 欢迎页广告
+request if ${url} ~= /^https?:\/\/m\.client\.10010\.com\/uniAdmsInterface\/(getHomePageAd|getWelcomeAd)/i then reject_dict(200)
+# 商城统计脚本
+^https?:\/\/res\.mall\.10010\.cn\/mall\/common\/js\/fa\.js?referer= reject-img
+
+[MitM]
+hostname = m.client.10010.com, res.mall.10010.cn

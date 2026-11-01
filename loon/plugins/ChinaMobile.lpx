@@ -1,0 +1,24 @@
+#!name=中国移动
+#!desc=移除开屏广告、发现页广告与悬浮窗。首次使用需删除 App 重装，清掉本地缓存的开屏素材后才生效。基于 fmz200 规则修改。
+#!openUrl=https://apps.apple.com/app/id583700738
+#!author=奶思[https://github.com/fmz200/wool_scripts]
+#!tag=去广告
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ChinaMobile.png
+#!date=2026-11-01
+
+[Rule]
+IP-CIDR, 120.240.95.37/32, REJECT, no-resolve
+
+[Rewrite]
+# 接口响应是加密的，无法改字段，只能整接口拦截
+# 启动初始化（开屏广告）
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/init\/startInit reject-200
+# 发现页广告
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/explorePage\/getAdverList reject
+# 多个悬浮窗
+^https?:\/\/(client\.app\.coc|app)\.10086\.cn\/biz-orange\/DN\/emotionMarket reject
+
+[MitM]
+hostname = client.app.coc.10086.cn, app.10086.cn
