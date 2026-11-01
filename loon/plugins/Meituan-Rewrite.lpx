@@ -1,7 +1,6 @@
-#!name=美团
-#!desc=拦截美团广告与上报域名，并清理首页多余标签页、我的页推荐、搜索热词、开屏图、购物车顶栏等推广内容。
+#!name=美团（重写版）
+#!desc=重写机制自检版：打开 http://www.baidu.com 若出现 LOON-REWRITE-OK 说明重写正常。
 #!author=TG@ZenMoFiShi
-#!openUrl=https://apps.apple.com/app/id423084029
 #!tag=去广告
 #!loon_version=3.5.1(978)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
@@ -56,6 +55,7 @@ IP-CIDR6,2405:1480:1000:4::15/128,REJECT,no-resolve
 IP-CIDR6,2402:4e00:40:40::2:373/128,REJECT,no-resolve
 
 [Rewrite]
+^http://www\.baidu\.com/ mock-response-body data-type=text data="LOON-REWRITE-OK"
 ^https?://(httpdns|httpdnsvip|httpdnsmultiapi|httpdnsmultiapivip)\.meituan\.com/ reject-200
 ^http://103\.37\.155\.60/fetch reject-200
 ^https://apimobile\.meituan\.com/aggroup/indexTab response-body-json-jq '.data.resource.tabArea|=map(select(.tabName!="video"))'
