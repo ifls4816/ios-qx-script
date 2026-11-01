@@ -1,4 +1,4 @@
-# OutsideLite — 合并自 Loon 版与 QX 版（QX 的 HOST-* 已转为 DOMAIN-*，IP6-CIDR 转为 IP-CIDR6）
+# OutsideLite — 合并自 Loon 版与 QX 版（QX 的 HOST-* 已转为 DOMAIN-*；IP 规则统一带 no-resolve）
 # > UA
 USER-AGENT,Instagram*
 # > Microsoft Proxy
