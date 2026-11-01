@@ -1,4 +1,4 @@
-#!name=广发基金去广告
+#!name=广发基金
 #!date=2026-10-03
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
 #!desc=移除广发基金 App 开屏广告（只删开屏条目，首页横幅不受影响；开屏后约 4 秒的等待为 App 内置计时，无法去除）。

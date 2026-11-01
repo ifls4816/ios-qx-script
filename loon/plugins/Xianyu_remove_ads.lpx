@@ -1,4 +1,4 @@
-#!name=闲鱼去广告
+#!name=闲鱼
 #!date=2026-10-03
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
 #!desc=移除开屏广告、首页集市/圈子/回收 tab 与推广、信息流广告、搜索页热搜榜与猜你在找，精简我的页面（闲鱼回收、闲鱼币、猜你喜欢、会员横幅）。基于 RuCu6 规则修改。
