@@ -1,5 +1,5 @@
 // 闲鱼去广告
-// 基于 kelee / RuCu6 的 jq 规则改写为脚本，便于按实际返回结构精确处理
+// 由上游 jq 规则改写为脚本，便于按实际返回结构精确处理
 const url = $request.url;
 if (!$response.body) $done({});
 let obj = JSON.parse($response.body);

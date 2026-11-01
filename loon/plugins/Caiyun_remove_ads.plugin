@@ -5,7 +5,6 @@
 #!openUrl=https://apps.apple.com/app/id847764912
 #!tag=去广告
 #!loon_version=3.5.1(998)
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ColorfulClouds.png
 
 [Rule]
 DOMAIN, abyss.cyapi.cn, REJECT
@@ -21,5 +20,5 @@ response if ${url} ~= /^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\
 response if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/config(?:\?|$)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun_remove_ads.js") with tag="移除卡片广告位", requires_body=true
 
 [MitM]
-# 比 kelee 多了 wrapper.cyapi.cn：脚本规则匹配它，但 kelee 没加进 MitM，那部分处理从未生效
+# wrapper.cyapi.cn 必须列进 MitM：脚本规则会匹配它，漏了这部分处理永远不生效
 hostname = biz.cyapi.cn, starplucker.cyapi.cn, wrapper.cyapi.cn, api.caiyunapp.com, cdn-w.caiyunapp.com

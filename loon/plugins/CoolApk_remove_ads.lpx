@@ -1,13 +1,12 @@
 #!name=酷安去广告
 #!desc=过滤酷安广告
 #!openUrl=https://apps.apple.com/app/id1422581869
-#!author=RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!author=RuCu6[https://github.com/RuCu6]
 #!tag=去广告
 #!system=
 #!system_version=
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/CoolApk.png
 #!date=2026-10-02 13:57:49
 
 [Rewrite]

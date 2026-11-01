@@ -1,11 +1,10 @@
 #!name=闲鱼去广告
 #!date=2026-10-03
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
-#!desc=移除开屏广告、首页集市/圈子/回收 tab 与推广、信息流广告、搜索页热搜榜与猜你在找，精简我的页面（闲鱼回收、闲鱼币、猜你喜欢、会员横幅）。基于 RuCu6 / kelee 规则修改。
+#!desc=移除开屏广告、首页集市/圈子/回收 tab 与推广、信息流广告、搜索页热搜榜与猜你在找，精简我的页面（闲鱼回收、闲鱼币、猜你喜欢、会员横幅）。基于 RuCu6 规则修改。
 #!openUrl=https://apps.apple.com/app/id510909506
 #!tag=去广告
 #!loon_version=3.5.1(998)
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/FleaMarket.png
 
 [Rule]
 # 来自 RuCu6：拦截阿里 AMDC 调度，迫使闲鱼走普通 HTTPS（否则 mtop 请求走长连接，MitM 改不到）。UA 为 URL 编码的「闲鱼」
@@ -14,7 +13,7 @@ AND, ((URL-REGEX, "^http:\/\/.+\/amdc\/mobileDispatch"), (USER-AGENT, "%E9%97%B2
 AND, ((PROTOCOL, QUIC), (DOMAIN-SUFFIX, goofish.com)), REJECT
 
 [Rewrite]
-# 来自 kelee（首页 nextfresh、widget.refresh 与我的页面 my.adapter 改由脚本处理）
+# 上游规则（首页 nextfresh、widget.refresh 与我的页面 my.adapter 改由脚本处理）
 request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\//i then reject_dict(200)
 request if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.user\.strategy\.list\//i then reject_dict(200)
 response if ${url} ~= /^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.fun\.follow\.feed\.list\//i then response.json.jq(".data.sections|=map(select(.cardType==2001))")

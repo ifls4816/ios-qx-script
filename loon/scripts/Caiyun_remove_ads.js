@@ -1,4 +1,4 @@
-// 彩云天气去广告（基于 kelee 脚本修改）
+// 彩云天气去广告脚本
 const url = $request.url;
 let obj = JSON.parse($response.body);
 
