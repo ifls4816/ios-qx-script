@@ -1,9 +1,9 @@
 #!name=美团
-#!desc=拦截美团广告/上报域名与 HTTPDNS，并清理首页标签、我的页推荐、搜索热词、开屏图、购物车顶栏等界面推广。
+#!desc=拦截美团广告与上报域名，并清理首页多余标签页、我的页推荐、搜索热词、开屏图、购物车顶栏等推广内容。
 #!author=TG@ZenMoFiShi
 #!openUrl=https://apps.apple.com/app/id423084029
 #!tag=去广告
-#!loon_version=3.5.1(983)
+#!loon_version=3.5.1(978)
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
 #!date=2026-11-01
 
@@ -56,16 +56,20 @@ IP-CIDR6,2405:1480:1000:4::15/128,REJECT,no-resolve
 IP-CIDR6,2402:4e00:40:40::2:373/128,REJECT,no-resolve
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/(httpdns|httpdnsvip|httpdnsmultiapi|httpdnsmultiapivip)\.meituan\.com\//i then reject(200)
-request if ${url} ~= /^http:\/\/103\.37\.155\.60\/fetch/i then reject(200)
-response if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/aggroup\/indexTab/i then response.json.jq("try (if (.data.resource.tabArea|type)==\"array\" then .data.resource.tabArea |= map(select(.tabName!=\"video\" and .tabName!=\"xiaotuan\")) else . end) catch .")
-response if ${url} ~= /^https?:\/\/feedguess\.meituan\.com\/lycoris\/scene\/(gwc_feed1_2265|personalcenter_2154)(\?|$)/i then response.json.jq("try (if (.data|type)==\"array\" then .data=[] | .bottom=true | .ext=((.ext//{})|.forbidByExp=true) else . end) catch .")
-response if ${url} ~= /^https?:\/\/mt-personalcenter\.meituan\.com\/usercenter\/display/i then response.json.jq("try (if (.children|type)==\"array\" then .children |= map(select(.name!=\"mine_cross_recommend\")) else . end) catch .")
-response if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/group\/v1\/deal\/searchpage\/defaultword/i then response.json.jq("try (if (.searchIntroduceResponse|type)==\"object\" then (.searchIntroduceResponse.defaultWordRes.defaultWordItems=[] | .searchIntroduceResponse.HotWordInfos=[]) else . end) catch .")
-response if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/group\/v1\/deal\/searchpage\/hotword\/city\/divide\/hotrecommend\//i then response.json.jq("try (if (.data.segmentsV2|type)==\"array\" then (.data.segmentsV2 |= map(if (.hotwordSegments|type)==\"array\" then (.hotwordSegments |= map(select(.pageName!=\"EntranceHotwordsV2Hotwords\" and .pageName!=\"EntranceHotwordsV2ContentCard\"))) | select((.hotwordSegments|length)>0) else . end)) else . end) catch . | try (if (.data.aiSearchBubble.bubbleTexts|type)==\"array\" then .data.aiSearchBubble.bubbleTexts=[] else . end) catch .")
-response if ${url} ~= /^https?:\/\/assistify\.meituan\.com\/assistant\/getAppClientHornConfig/i then response.json.jq("try (if (.data|type)==\"string\" then .data |= (try (fromjson|.skills={}|tojson) catch .) else . end) catch .")
-response if ${url} ~= /^https?:\/\/mop\.meituan\.com\/mop\/entry\/shoppingCartEntry/i then response.json.jq("try (if (.resourcesMap.topBannerArea|type)==\"array\" then .resourcesMap.topBannerArea=[] else . end) catch . | try (if (.data.resourcesMap.topBannerArea|type)==\"array\" then .data.resourcesMap.topBannerArea=[] else . end) catch .")
-response if ${url} ~= /^https?:\/\/mop\.meituan\.com\/api\/entryModule\/startupPicture/i then response.json.jq("try (if (.resourcesMap.startupPicArea|type)==\"array\" then .resourcesMap.startupPicArea=[] else . end) catch . | try (if (.data.resource.startupPicArea|type)==\"array\" then .data.resource.startupPicArea=[] else . end) catch .")
+^https?://(httpdns|httpdnsvip|httpdnsmultiapi|httpdnsmultiapivip)\.meituan\.com/ reject-200
+^http://103\.37\.155\.60/fetch reject-200
+^https://apimobile\.meituan\.com/aggroup/indexTab response-body-json-jq '.data.resource.tabArea|=map(select(.tabName!="video"))'
+^https://apimobile\.meituan\.com/aggroup/indexTab response-body-json-jq '.data.resource.tabArea|=map(select(.tabName!="xiaotuan"))'
+^https://feedguess\.meituan\.com/lycoris/scene/(gwc_feed1_2265|personalcenter_2154) response-body-json-jq '.data=[]|.bottom=true'
+^https://mt-personalcenter\.meituan\.com/usercenter/display response-body-json-jq '.children|=map(select(.name!="mine_cross_recommend"))'
+^https://apimobile\.meituan\.com/group/v1/deal/searchpage/defaultword response-body-json-jq '.searchIntroduceResponse.defaultWordRes.defaultWordItems=[]'
+^https://apimobile\.meituan\.com/group/v1/deal/searchpage/defaultword response-body-json-jq '.searchIntroduceResponse.HotWordInfos=[]'
+^https://apimobile\.meituan\.com/group/v1/deal/searchpage/hotword/city/divide/hotrecommend/ response-body-json-jq '.data.aiSearchBubble.bubbleTexts=[]'
+^https://apimobile\.meituan\.com/group/v1/deal/searchpage/hotword/city/divide/hotrecommend/ response-body-json-jq '.data.segmentsV2|=map(.+{hotwordSegments:((.hotwordSegments//[])|map(select(.pageName!="EntranceHotwordsV2Hotwords")))})'
+^https://apimobile\.meituan\.com/group/v1/deal/searchpage/hotword/city/divide/hotrecommend/ response-body-json-jq '.data.segmentsV2|=map(.+{hotwordSegments:((.hotwordSegments//[])|map(select(.pageName!="EntranceHotwordsV2ContentCard")))})'
+^https://assistify\.meituan\.com/assistant/getAppClientHornConfig response-body-json-jq '.data|=(fromjson|.skills={}|tojson)'
+^https://mop\.meituan\.com/mop/entry/shoppingCartEntry response-body-json-jq '.resourcesMap.topBannerArea=[]'
+^https://mop\.meituan\.com/api/entryModule/startupPicture response-body-json-jq '.data.resource.startupPicArea=[]'
 
 [MitM]
 hostname = %APPEND% apimobile.meituan.com, feedguess.meituan.com, mop.meituan.com, mt-personalcenter.meituan.com, assistify.meituan.com, httpdns.meituan.com, httpdnsmultiapi.meituan.com, gaea.meituan.com
