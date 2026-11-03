@@ -1,10 +1,10 @@
 #!name=彩云天气
-#!date=2026-10-03
+#!date=2026-11-03
 #!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
-#!desc=移除底栏小助手、首页及地图页卡片广告位、推广横幅、节日活动与反馈弹窗等，保留限行、空气质量等快捷入口。
+#!desc=移除底栏小助手、首页及地图页卡片广告位、推广横幅、节日活动与反馈弹窗等；首页提示语改为显示今明两天尾号限行（不依赖登录）。
 #!openUrl=https://apps.apple.com/app/id847764912
 #!tag=去广告
-#!loon_version=3.5.1(998)
+#!loon_version=3.5.1
 
 [Rule]
 DOMAIN, abyss.cyapi.cn, REJECT
@@ -18,7 +18,9 @@ request if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w
 [Script]
 response if ${url} ~= /^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun.js") with tag="彩云天气去广告", requires_body=true
 response if ${url} ~= /^https:\/\/starplucker\.cyapi\.cn\/v3\/config(?:\?|$)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun.js") with tag="移除卡片广告位", requires_body=true
+# 首页提示语改为显示今明两天尾号限行（限行接口不需要登录；登录令牌过期后左上角限行图标不再显示，用它替代）
+response if ${url} ~= /^https:\/\/wrapper\.cyapi\.cn\/v2\.\d+\/[^\/]+\/[\d.-]+,[\d.-]+\/weather\?/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/Caiyun.js") with tag="首页提示语加限行", requires_body=true
 
 [MitM]
-# wrapper.cyapi.cn 必须列进 MitM：脚本规则会匹配它，漏了这部分处理永远不生效
+# 只解密规则用到的域名
 hostname = biz.cyapi.cn, starplucker.cyapi.cn, wrapper.cyapi.cn, api.caiyunapp.com, cdn-w.caiyunapp.com
