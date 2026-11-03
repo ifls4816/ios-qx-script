@@ -1,28 +1,18 @@
 #!name=酷安
-#!desc=过滤酷安广告
+#!date=2026-11-03
+#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
+#!desc=过滤酷安广告、话题页红包弹窗与搜索框推广词
 #!openUrl=https://apps.apple.com/app/id1422581869
 #!author=RuCu6[https://github.com/RuCu6]
 #!tag=去广告
-#!system=
-#!system_version=
-#!loon_version=3.5.1(998)
-#!homepage=https://github.com/ifls4816/ios-qx-script/tree/master/loon/plugins
-#!date=2026-10-02 13:57:49
+#!loon_version=3.5.1
 
 [Rewrite]
 request if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch/i then reject_dict(200)
 
-response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/feed\/detail\?/i then response.json.jq(".data.hotReplyRows |= if . then map(select(.id?)) else . end | .data.topReplyRows |= if . then map(select(.id?)) else . end | reduce (\"detailSponsorCard\", \"include_goods\", \"include_goods_ids\") as $key (.; .data[$key]=[])")
-
-response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/feed\/replyList/i then response.json.jq("if .data? and ((.data | type) == \"array\") and (.data | length > 0) then .data |= map(select(.id?)) else . end")
-
-response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/main\/dataList/i then response.json.jq(".data |= (if (type==\"array\" and length>0) then map(select((.entityTemplate!=\"sponsorCard\") and (.title!=\"精选配件\"))) else . end)")
-
-response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/page\/dataList/i then response.json.jq("if (.data | length > 0) then .data |= map(select((.title? != \"酷安热搜\") and (.entityTemplate? != \"imageScaleCard\") and (.entityTemplate? != \"sponsorCard\"))) else . end")
-
-response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/main\/indexV8/i then response.json.jq(".data |= (if length > 0 then map(select((.entityTemplate != \"sponsorCard\") and ([8639,29349,33006,32557] | index(.entityId) | not) and ((.title // \"\" | test(\"值得买|红包\")) | not))) else . end)")
-
-response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/main\/init/i then response.json.jq(".data |= map(select(.entityId? | [944,945,6390] | index(.) | not) | if .entityId == 20131 then .entities |= map(select(.title != \"酷品\")) else . end)")
+[Script]
+response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/(topic\/newTagDetail|feed\/detail\?|feed\/replyList|main\/dataList|page\/dataList|main\/indexV8|main\/init)/i then script("https://raw.githubusercontent.com/ifls4816/ios-qx-script/master/loon/scripts/CoolApk.js") with tag="酷安去广告", requires_body=true
 
 [MitM]
-hostname=api.coolapk.com
+# 只解密规则用到的域名
+hostname = api.coolapk.com
